@@ -1,10 +1,12 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cloud
+#    url: jdbc:mysql://localhost:3306/cloud/
+    url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
-
+#    username: ${DB_USERNAME}
+#    password: ${DB_PASSWORD}
 
 mybatis:
   type-aliases-package: com.cloudstudy.domain
