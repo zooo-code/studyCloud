@@ -3,6 +3,7 @@ package com.cloudstudy.cloud.controller;
 import com.cloudstudy.cloud.domain.Cloud;
 import com.cloudstudy.cloud.repository.CloudRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/cloudStudy")
@@ -42,7 +44,7 @@ public class CloudController {
 
     @PostMapping("/add")
     public String addItem(@ModelAttribute Cloud cloud, RedirectAttributes redirectAttributes) {
-
+        log.info("Cloud {}",cloud.getName());
         Cloud savedCloud = cloudRepository.save(cloud);
         redirectAttributes.addAttribute("cloudId", savedCloud.getId());
         redirectAttributes.addAttribute("status", true);

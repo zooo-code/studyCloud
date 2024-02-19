@@ -2,40 +2,35 @@ package com.cloudstudy.cloud.repository;
 
 
 import com.cloudstudy.cloud.domain.Cloud;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+
+@RequiredArgsConstructor
 @Repository
-public class CloudRepository {
+public class CloudRepository  {
 
+    private final CloudMapper cloudMapper;
 
-    private static final Map<Long, Cloud> store = new HashMap<>(); //static
-    private static long sequence = 0L; //static
 
     public Cloud save(Cloud cloud) {
-        cloud.setId(++sequence);
-        store.put(cloud.getId(), cloud);
+        cloudMapper.save(cloud);
         return cloud;
     }
 
     public Cloud findById(Long id) {
-        return store.get(id);
+        return cloudMapper.findById(id);
     }
 
+
+
     public List<Cloud> findAll() {
-        return new ArrayList<>(store.values());
+        return cloudMapper.findAll();
     }
 
     public void update(Long cloudId, Cloud updateParam) {
-        Cloud findItem = findById(cloudId);
-        findItem.setName(updateParam.getName());
-    }
-
-    public void clearStore() {
-        store.clear();
+        cloudMapper.update(cloudId,updateParam);
     }
 }

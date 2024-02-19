@@ -27,17 +27,14 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>상품명</th>
-                <th>가격</th>
-                <th>수량</th>
+                <th>클라우드명</th>
+
             </tr>
             </thead>
             <tbody>
             <tr th:each="cloud : ${clouds}">
                 <td><a href="cloud.html" th:href="@{/cloudStudy/{cloudId}(cloudId=${cloud.id})}" th:text="${cloud.id}">id</a></td>
                 <td><a href="cloud.html" th:href="@{|/cloudStudy/${cloud.id}|}" th:text="${cloud.name}">클라우드 명</a></td>
-                <td th:text="${cloud.getId()}">10000</td>
-                <td th:text="${cloud.getName()}">10</td>
             </tr>
             </tbody>
         </table>
