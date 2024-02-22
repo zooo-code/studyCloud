@@ -18,11 +18,13 @@
         <h2>클라우드 등록 폼</h2>
     </div>
 
-    <form action="cloud.html" th:action th:object="${cloud}" method="post">
+    <form  th:action th:object="${cloudForm}" method="post" enctype="multipart/form-data">
         <div>
             <label for="cloudName">클라우드 명</label>
             <input type="text" id="cloudName" th:field="*{name}" class="form-control" placeholder="이름을 입력하세요">
+            <input type="file" multiple="multiple" name="imageFiles" >
         </div>
+
 
 
         <div class="row">

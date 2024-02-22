@@ -1,14 +1,21 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/cloud/
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://localhost:3306/cloud
+#    url: ${DB_URL}
 #    username: ${DB_USERNAME}
 #    password: ${DB_PASSWORD}
-
+    username: root
+    password: 1q2w3e4r
+  s3:
+    accessKey: ${S3_ACCESS_KEY}
+    secretKey: ${S3_SECRET_KEY}
+    bucket: projectbucket
 mybatis:
   type-aliases-package: com.cloudstudy.domain
   configuration:
     map-underscore-to-camel-case: true
+
+
+
+

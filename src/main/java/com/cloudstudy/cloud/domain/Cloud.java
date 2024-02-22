@@ -2,10 +2,10 @@ package com.cloudstudy.cloud.domain;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
+
+import java.util.List;
 
 @Data
-@Getter
 public class Cloud {
 
 
@@ -13,12 +13,14 @@ public class Cloud {
 
     private String name;
 
+    private List<CloudFile> CloudFiles;
     public Cloud() {
     }
 
     @Builder
-    public Cloud(Long id, String name) {
+    public Cloud(Long id, String name, List<CloudFile> CloudFiles) {
         this.id = id;
         this.name = name;
+        this.CloudFiles = CloudFiles;
     }
 }

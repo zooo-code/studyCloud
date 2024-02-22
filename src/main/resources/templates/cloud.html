@@ -28,6 +28,8 @@
     <div>
         <label for="cloudName">상품명</label>
         <input type="text" id="cloudName" name="cloudName" class="form-control" value="클라우드" th:value="${cloud.name}" readonly>
+        <img th:each="imageFile : ${cloud.cloudFiles}"
+             th:src="|/cloudStudy/images/${imageFile.getUploadFileName()}|" width="300" height="300"/>
     </div>
 
 
