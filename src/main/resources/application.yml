@@ -40,3 +40,5 @@ mybatis:
 #    url: jdbc:mysql://localhost:3306/cloud
 #    username: root
 #    password: 1q2w3e4r
+test:
+  test: 1234
