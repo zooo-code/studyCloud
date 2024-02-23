@@ -4,6 +4,10 @@ package com.cloudstudy.cloud.domain;
 import lombok.Builder;
 import lombok.Data;
 
+
+/**
+ * 파일에 대한 메타 데이터를 저장하기 위한 도메인 입니다.
+ */
 @Data
 public class CloudFile {
 

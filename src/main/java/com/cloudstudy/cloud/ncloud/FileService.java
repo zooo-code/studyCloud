@@ -25,20 +25,35 @@ public class FileService {
 
     private final S3Client amazonS3Client;
 
-
     private final S3Properties properties;
 
+    /**
+     * 파일의 UUID 를 만들어 냅니다.
+     * @param fileName 파일 이름에 있는 확장자를 추출하기 위한 파라미터 입니다.
+     * @return
+     */
     public String getUuidFileName(String fileName) {
         String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
-        return UUID.randomUUID().toString() + "." + ext;
+        return UUID.randomUUID() + "." + ext;
     }
 
-
+    /**
+     * 저장을 요청 받은 파일 리스트를 버킷에 업로드 하는 메서드 입니다.
+     * @param multipartFiles
+     * @return
+     */
     public List<CloudFileDTO> uploadFilesSample(List<MultipartFile> multipartFiles) {
         return uploadFiles(multipartFiles, "sample");
     }
 
-    //projectbucket/ 빈칸/project(uploadDir,filePath)/파일이름
+    /**
+     * 업로드 요청 받을 파일들을 하나씩 업로드 진행합니다.
+     * 파일의 경로를 설정하고 s3 버킷에 파일을 업로드 합니다.
+     * 마지막으로 저장된 파일들을 CloudFileDTO 에 담아 리스트로 리턴해줍니다.
+     * @param multipartFiles
+     * @param filePath 버킷에 있는 디렉토리 입니다.
+     * @return
+     */
     public List<CloudFileDTO> uploadFiles(List<MultipartFile> multipartFiles, String filePath) {
         List<CloudFileDTO> s3Files = new ArrayList<>();
 
@@ -78,18 +93,17 @@ public class FileService {
         return s3Files;
     }
 
-    public InputStream downloadImage(String filename) throws IOException {
-
+    /**
+     * 버킷에서 해당 파일 이름을 기반으로 다운을 위한 요청을 합니다.
+     * @param filename
+     * @return
+     */
+    public InputStream downloadImage(String filename){
         String keyName = "sample" + "/" + filename;
-//        GetObjectRequest getObjectRequest = GetObjectRequest.builder()
-//                .bucket(bucketName)
-//                .key(filename)
-//                .build();
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()
                 .bucket(properties.getBucketName())
                 .key(keyName)
                 .build();
-
         ResponseInputStream<GetObjectResponse> objectContent = amazonS3Client.getObject(getObjectRequest);
 
         return objectContent;

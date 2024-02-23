@@ -5,6 +5,10 @@ import lombok.Data;
 
 import java.util.List;
 
+
+/**
+ * 메인 도메인 입니다.
+ */
 @Data
 public class Cloud {
 

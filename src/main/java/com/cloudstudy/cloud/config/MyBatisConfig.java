@@ -8,6 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * 마이바티스에 대한 설정 입니다.
+ * 스프링을 통해 Bean 으로 관리하기 위해 의존성 주입을 진행합니다.
+ */
 @Configuration
 @RequiredArgsConstructor
 public class MyBatisConfig {

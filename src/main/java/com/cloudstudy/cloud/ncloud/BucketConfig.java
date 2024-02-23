@@ -17,6 +17,13 @@ import org.springframework.context.annotation.Configuration;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+
+/**
+ * 버킷에 사용되는 설정 클래스 입니다.
+ * String endPoint = "https://kr.object.ncloudstorage.com"; 파일을 저장하기 endpoint 필드입니다.
+ * String regionName = "kr-standard"; 저장하기 위한 리전입니다.
+ * S3Properties properties; 설정에 대한 주입 도메인 입니다.
+ */
 @Slf4j
 @Configuration
 @EnableConfigurationProperties(S3Properties.class)
@@ -31,6 +38,11 @@ public class BucketConfig {
         this.properties = properties;
     }
 
+    /**
+     * s3Client 를 생성하게 되었을 때 모든 설정을 주입후에 s3Client 를 리턴합니다.
+     * 이때 필드에 있는 설정 값들을 주입합니다.
+     * @return 모든 설정이 주입된 s3Client 를 리턴합니다.
+     */
     @Bean
     public S3Client s3Client() {
         S3Client s3 = S3Client.builder()
@@ -45,6 +57,12 @@ public class BucketConfig {
         return s3;
     }
 
+    /**
+     * 버킷이 존재한지 확인합니다.
+     * 없을시 버킷을 생성합니다. 만약에 이미 있다면, 존재하는 버킷을 return 합니다.
+     * @param s3
+     * @param bucketName 설정 파일에 있는 버킷 이름입니다.
+     */
     private void createBucket(S3Client s3, String bucketName) {
         try {
             // 버킷이 존재하는지 확인
@@ -66,6 +84,12 @@ public class BucketConfig {
         }
     }
 
+    /**
+     * endpoint 를 기반으로 URI 를 생성하는 메서드 입니다.
+     * 잘못된 형식을 보낼시 에러를 catch 합니다.
+     * @param endpoint
+     * @return
+     */
     private URI createURI(String endpoint) {
         try {
             return new URI(endpoint);
