@@ -25,13 +25,8 @@ public class FileService {
 
     private final S3Client amazonS3Client;
 
-    @Value("${spring.s3.bucket}")
-    private String bucketName;
 
-
-
-    private final CloudFileMapper cloudFileMapper;
-
+    private final S3Properties properties;
 
     public String getUuidFileName(String fileName) {
         String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
@@ -57,7 +52,7 @@ public class FileService {
 
                 // S3에 파일 업로드
                 PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-                        .bucket(bucketName)
+                        .bucket(properties.getBucketName())
                         .key(keyName)
                         .contentType(multipartFile.getContentType())
                         .build();
@@ -65,7 +60,7 @@ public class FileService {
                 amazonS3Client.putObject(putObjectRequest, RequestBody.fromInputStream(inputStream, multipartFile.getSize()));
 
                 // S3에 업로드한 파일 URL
-                uploadFileUrl = "https://kr.object.ncloudstorage.com/" + bucketName + "/" + keyName;
+                uploadFileUrl = "https://kr.object.ncloudstorage.com/" + properties.getBucketName() + "/" + keyName;
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -91,7 +86,7 @@ public class FileService {
 //                .key(filename)
 //                .build();
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()
-                .bucket(bucketName)
+                .bucket(properties.getBucketName())
                 .key(keyName)
                 .build();
 

@@ -1,6 +1,8 @@
 package com.cloudstudy.cloud.ncloud;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -17,30 +19,28 @@ import java.net.URISyntaxException;
 
 @Slf4j
 @Configuration
+@EnableConfigurationProperties(S3Properties.class)
 public class BucketConfig {
 
     private final String endPoint = "https://kr.object.ncloudstorage.com";
     private final String regionName = "kr-standard";
 
-    @Value("${spring.s3.accessKey}")
-    private String accessKey;
+    private final S3Properties properties;
 
-    @Value("${spring.s3.secretKey}")
-    private String secretKey;
-
-    @Value("${spring.s3.bucket}")
-    private String bucketName;
+    public BucketConfig(S3Properties properties) {
+        this.properties = properties;
+    }
 
     @Bean
     public S3Client s3Client() {
         S3Client s3 = S3Client.builder()
                 .endpointOverride(createURI(endPoint))
                 .region(Region.of(regionName))
-                .credentialsProvider(() -> AwsBasicCredentials.create(accessKey, secretKey))
+                .credentialsProvider(() -> AwsBasicCredentials.create(properties.getAccessKey(), properties.getSecretKey()))
                 .build();
 
         // 버킷 생성
-        createBucket(s3, bucketName);
+        createBucket(s3, properties.getBucketName());
 
         return s3;
     }

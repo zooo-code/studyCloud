@@ -35,6 +35,8 @@ public class CloudController {
     private final CloudRepository cloudRepository;
     private final CloudFileRepository cloudFileRepository;
     private final FileService fileService;
+
+
     @GetMapping
     public String cloudStudy(Model model){
         List<Cloud> all = cloudRepository.findAll();

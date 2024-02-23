@@ -1,16 +1,35 @@
 spring:
+  config:
+    activate:
+      on-profile: prod
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cloud
-#    url: ${DB_URL}
-#    username: ${DB_USERNAME}
-#    password: ${DB_PASSWORD}
+    url: jdbc:mysql://db-ll5va.pub-cdb.ntruss.com:3306/studyCloud?useSSL=false&serverTimezone=UTC
+    username: test
+    password: test123!
+  s3:
+    accessKey: 1m4B4ebcg75bNqkV29XT
+    secretKey: ms4wULSDm9WQnJxMH9vuXSuM09QQR1DLtLIxwees
+    bucketName: projectbucket
+mybatis:
+  type-aliases-package: com.cloudstudy.domain
+  configuration:
+    map-underscore-to-camel-case: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url:  jdbc:mysql://localhost:3306/cloud
     username: root
     password: 1q2w3e4r
   s3:
-    accessKey: ${S3_ACCESS_KEY}
-    secretKey: ${S3_SECRET_KEY}
-    bucket: projectbucket
+    accessKey: 1m4B4ebcg75bNqkV29XT
+    secretKey: ms4wULSDm9WQnJxMH9vuXSuM09QQR1DLtLIxwees
+    bucketName: projectbucket
 mybatis:
   type-aliases-package: com.cloudstudy.domain
   configuration:
@@ -18,4 +37,6 @@ mybatis:
 
 
 
-
+#    url: jdbc:mysql://localhost:3306/cloud
+#    username: root
+#    password: 1q2w3e4r
