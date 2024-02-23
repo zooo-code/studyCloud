@@ -3,4 +3,6 @@
 
 - server
 - DB server 
-- file storage(진행중)
+- file storage
+
+모든 과정 학습 완료
