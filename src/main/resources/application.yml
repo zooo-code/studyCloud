@@ -1,0 +1,42 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db-lnjuc.pub-cdb.ntruss.com:3306/studyCloud?useSSL=false&serverTimezone=UTC
+    username: test
+    password: 1q2w3e4r!
+  s3:
+    accessKey: 1m4B4ebcg75bNqkV29XT
+    secretKey: ms4wULSDm9WQnJxMH9vuXSuM09QQR1DLtLIxwees
+    bucketName: projectbucket
+mybatis:
+  type-aliases-package: com.cloudstudy.domain
+  configuration:
+    map-underscore-to-camel-case: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url:  jdbc:mysql://localhost:3306/cloud
+    username: root
+    password: 1q2w3e4r
+  s3:
+    accessKey: 1m4B4ebcg75bNqkV29XT
+    secretKey: ms4wULSDm9WQnJxMH9vuXSuM09QQR1DLtLIxwees
+    bucketName: projectbucket
+mybatis:
+  type-aliases-package: com.cloudstudy.domain
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+
+#    url: jdbc:mysql://localhost:3306/cloud
+#    username: root
+#    password: 1q2w3e4r
