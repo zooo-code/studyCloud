@@ -4,7 +4,7 @@ spring:
       on-profile: prod
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://db-lnjuc.pub-cdb.ntruss.com:3306/studyCloud?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://db-lnjuc.pub-cdb.ntruss.com:3306/cloudstudy?useSSL=false&serverTimezone=UTC
     username: test
     password: 1q2w3e4r!
   s3:
