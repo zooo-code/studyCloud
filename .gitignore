@@ -36,5 +36,5 @@ out/
 ### VS Code ###
 .vscode/
 
-# Ignore YAML files
-*.yml
+## Ignore YAML files
+#*.yml
