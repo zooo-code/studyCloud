@@ -84,7 +84,8 @@ public class CloudController {
         InputStreamResource resource = new InputStreamResource(inputStream);
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=\"" + filename + "\"")
                 .body(resource);
     }
 
@@ -127,6 +128,11 @@ public class CloudController {
         redirectAttributes.addAttribute("status", true);
         return "redirect:/cloudStudy/{cloudId}";
     }
+
+
+
+
+
 
     /**
      * 수정할 도메인의 Id 를 기반으로 도메인을 조회하고 수정을 진행합니다.
